@@ -1,3 +1,0 @@
-C:/Users/Leo/CLionProjects/whatami/cmake-build-debug-mingw-tdm-gcc/CMakeFiles/whatami.dir
-C:/Users/Leo/CLionProjects/whatami/cmake-build-debug-mingw-tdm-gcc/CMakeFiles/edit_cache.dir
-C:/Users/Leo/CLionProjects/whatami/cmake-build-debug-mingw-tdm-gcc/CMakeFiles/rebuild_cache.dir
