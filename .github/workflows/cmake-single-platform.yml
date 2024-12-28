@@ -24,7 +24,7 @@ jobs:
 
     - name: Setup TDM-GCC
       run: |
-          choco install 7zip --version 22.1 -y
+          choco install 7zip -y
           Invoke-WebRequest -Uri 'https://github.com/jmeubank/tdm-gcc/releases/download/v10.3.0-tdm64-2/tdm64-gcc-10.3.0-2.exe' -OutFile 'C:\Windows\temp\TDM-GCC-64.exe'
           New-Item -ItemType Directory -Path 'C:\TDM-GCC-64'
           Start-Process '7z' -ArgumentList 'e C:\Windows\temp\TDM-GCC-64.exe -oC:\TDM-GCC-64 -y' -Wait
