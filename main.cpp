@@ -3,6 +3,25 @@
 #include <sysinfoapi.h>
 #include "windows_edition.h"
 
+std::wstring GetUpdateBuildRevision() {
+    HKEY hKey;
+    DWORD ubr = 0;
+    DWORD dataSize = sizeof(ubr);
+
+    // Open the registry key
+    if (RegOpenKeyExW(HKEY_LOCAL_MACHINE,
+                      L"SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion",
+                      0, KEY_READ, &hKey) == ERROR_SUCCESS) {
+        // Query the UBR value
+        if (RegQueryValueExW(hKey, L"UBR", nullptr, nullptr, reinterpret_cast<LPBYTE>(&ubr), &dataSize) == ERROR_SUCCESS) {
+            RegCloseKey(hKey);
+            return std::to_wstring(ubr);
+        }
+        RegCloseKey(hKey);
+                      }
+    return L"Unknown"; // Return "Unknown" if the UBR value couldn't be retrieved
+}
+
 int main() {
     OSVERSIONINFOEX osvi;
     osvi.dwOSVersionInfoSize = sizeof(OSVERSIONINFOEX);
@@ -49,8 +68,6 @@ int main() {
     std::string friendlyName;
     std::string editionName;
 
-    printf("Version: %d.%d.%d\n", osvi.dwMajorVersion, osvi.dwMinorVersion, osvi.dwBuildNumber);
-
     if (codebase == "9x") {
         if (osvi.dwMajorVersion == 4) {
             if (osvi.dwMinorVersion == 0) friendlyName = "Windows 95";
@@ -91,6 +108,19 @@ int main() {
     }
 
     printf("Friendly name: %s\n", friendlyName.c_str());
+
+    if (osvi.dwMajorVersion >= 10) {
+        // we can be more accurate
+        if (auto RtlGetVersion = reinterpret_cast<void(*)(OSVERSIONINFOEXW*)>(GetProcAddress(GetModuleHandle("ntdll.dll"), "RtlGetVersion"))) {
+            OSVERSIONINFOEXW osviw;
+            osviw.dwOSVersionInfoSize = sizeof(OSVERSIONINFOEXW);
+            RtlGetVersion(&osviw);
+            printf("Version: %d.%d.%d.%d\n", osviw.dwMajorVersion, osviw.dwMinorVersion, osviw.dwBuildNumber, std::stoi(GetUpdateBuildRevision()));
+        }
+    }
+    else {
+        printf("Version: %d.%d.%d\n", osvi.dwMajorVersion, osvi.dwMinorVersion, osvi.dwBuildNumber);
+    }
 
     // check if service pack is empty
     if (char* servicePack = osvi.szCSDVersion; servicePack[0] == 0) {
