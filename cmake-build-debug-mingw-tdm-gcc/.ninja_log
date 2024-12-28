@@ -1,0 +1,13 @@
+# ninja log v6
+6	1186	7569551976712848	CMakeFiles/whatami.dir/main.cpp.obj	70575bdea5e08e5f
+1186	1460	7569551988519575	whatami.exe	71f11afdb4568b68
+19	2780	7570511721372598	CMakeFiles/whatami.dir/windows_edition.cpp.obj	e7d9c7eb6178b3cd
+15	2785	7570511721332605	CMakeFiles/whatami.dir/main.cpp.obj	70575bdea5e08e5f
+2785	3428	7570511749045689	whatami.exe	af2dfc1a40a16190
+6	1248	7570514525402261	CMakeFiles/whatami.dir/main.cpp.obj	70575bdea5e08e5f
+1248	1536	7570514537819876	whatami.exe	af2dfc1a40a16190
+4	1237	7570519319712451	CMakeFiles/whatami.dir/main.cpp.obj	70575bdea5e08e5f
+1238	1542	7570519332043201	whatami.exe	af2dfc1a40a16190
+3	1388	7570526006637039	CMakeFiles/whatami.dir/main.cpp.obj	70575bdea5e08e5f
+10	1102	7570526406324136	CMakeFiles/whatami.dir/main.cpp.obj	70575bdea5e08e5f
+1103	1385	7570526417256228	whatami.exe	af2dfc1a40a16190
