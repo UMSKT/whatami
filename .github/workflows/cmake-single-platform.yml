@@ -41,4 +41,4 @@ jobs:
 
     - name: Build
       # Build your program with the given configuration
-      run: cmake -DCMAKE_C_COMPILER=C:\TDM-GCC-64\bin\gcc.exe -DCMAKE_CXX_COMPILER=C:\TDM-GCC-64\bin\g++.exe --build ${{github.workspace}}/build
+      run: cmake -DCMAKE_C_COMPILER=C:\TDM-GCC-64\bin\gcc.exe -DCMAKE_CXX_COMPILER=C:\TDM-GCC-64\bin\g++.exe
